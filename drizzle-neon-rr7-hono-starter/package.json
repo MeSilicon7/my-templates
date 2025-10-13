@@ -1,0 +1,42 @@
+{
+  "name": "drizzle-neon-rr7-hono-starter",
+  "description": "A starter project for React Router 7, Hono, and Drizzle ORM with Neon database on Cloudflare Workers",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "react-router build",
+    "cf-typegen": "wrangler types",
+    "deploy": "npm run build && wrangler deploy",
+    "dev": "react-router dev",
+    "preview": "npm run build && vite preview",
+    "typecheck": "npm run cf-typegen && react-router typegen && tsc -b"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.7.4",
+    "@neondatabase/serverless": "^1.0.2",
+    "drizzle-orm": "^0.44.6",
+    "hono": "^4.9.11",
+    "isbot": "^5.1.31",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router": "^7.9.4",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.13.12",
+    "@cloudflare/workers-types": "^4.20251011.0",
+    "@react-router/dev": "^7.9.4",
+    "@tailwindcss/vite": "^4.1.14",
+    "@types/node": "^24.7.2",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.1",
+    "dotenv": "^17.2.3",
+    "drizzle-kit": "^0.31.5",
+    "tailwindcss": "^4.1.14",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9",
+    "vite-tsconfig-paths": "^5.1.4",
+    "wrangler": "^4.42.2"
+  }
+}
