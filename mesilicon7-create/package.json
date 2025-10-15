@@ -4,9 +4,11 @@
   "description": "CLI to create new projects from mesilicon7 templates",
   "type": "module",
   "bin": {
-    "create-mesilicon7": "./dist/index.js"
+    "create-mesilicon7": "dist/index.js"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -30,11 +32,16 @@
     "tsdown": "latest",
     "typescript": "^5.9.3"
   },
-  "keywords": ["cli", "template", "scaffold", "mesilicon7"],
+  "keywords": [
+    "cli",
+    "template",
+    "scaffold",
+    "mesilicon7"
+  ],
   "author": "mesilicon7",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mesilicon7/my-templates"
+    "url": "git+https://github.com/mesilicon7/my-templates.git"
   }
 }
