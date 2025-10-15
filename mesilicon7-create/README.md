@@ -1,4 +1,8 @@
-## Getting Started
+# mesilicon7-create
+
+A CLI tool to quickly scaffold projects from predefined `react router + hono` templates.
+
+## Usage
 
 ```bash
 bun create mesilicon7@latest
