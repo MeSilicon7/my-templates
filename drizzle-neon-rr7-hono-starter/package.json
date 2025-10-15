@@ -10,7 +10,13 @@
     "deploy": "npm run build && wrangler deploy",
     "dev": "react-router dev",
     "preview": "npm run build && vite preview",
-    "typecheck": "npm run cf-typegen && react-router typegen && tsc -b"
+    "typecheck": "npm run cf-typegen && react-router typegen && tsc -b",
+    "prepare": "husky",
+    "format": "prettier . --write",
+    "format-check": "prettier . --check"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.7.4",
@@ -26,6 +32,8 @@
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.13.12",
     "@cloudflare/workers-types": "^4.20251011.0",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@react-router/dev": "^7.9.4",
     "@tailwindcss/vite": "^4.1.14",
     "@types/node": "^24.7.2",
@@ -33,6 +41,8 @@
     "@types/react-dom": "^19.2.1",
     "dotenv": "^17.2.3",
     "drizzle-kit": "^0.31.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.4",
     "tailwindcss": "^4.1.14",
     "typescript": "^5.9.3",
     "vite": "^7.1.9",
