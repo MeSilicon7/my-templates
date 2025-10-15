@@ -1,0 +1,51 @@
+name: "🐞 Bug Report"
+description: Report an unexpected problem or behavior
+title: "[BUG] <short description>"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please fill out the form below carefully.
+  - type: input
+    id: summary
+    attributes:
+      label: Bug Summary
+      description: A short summary of what went wrong
+      placeholder: App crashes when clicking on the login button
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps To Reproduce
+      description: Step-by-step instructions to reproduce the behavior
+      placeholder: |
+        1. Go to ...
+        2. Click on ...
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should have happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, browser, Node.js version, etc.
+      placeholder: "OS: Ubuntu 24.04, Node: 22.8.0"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Logs / Screenshots
+      description: Paste any logs or attach screenshots here

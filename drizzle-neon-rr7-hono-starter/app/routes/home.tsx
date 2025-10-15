@@ -11,6 +11,25 @@ export function loader({ context }: Route.LoaderArgs) {
   return { message: context.cloudflare.env.VALUE_FROM_CLOUDFLARE };
 }
 
+/**
+ * Home page component with user information form.
+ *
+ * This component renders a form that collects user data (name, age, email) and submits it
+ * to the `/api/user` endpoint. It leverages React 19's form action feature for handling
+ * form submissions without traditional event handlers.
+ *
+ * @param {Route.ComponentProps} props - Component props from React Router
+ * @param {Object} props.loaderData - Data loaded from the loader function
+ * @param {string} props.loaderData.message - Message from Cloudflare environment
+ * @returns {JSX.Element} The rendered home page with user form
+ *
+ * @example
+ * // Form submission flow:
+ * // 1. User fills out name, age, and email fields
+ * // 2. On submit, formSubmit function is called with FormData
+ * // 3. Data is sent to /api/user endpoint via POST request
+ * // 4. Server response is logged to console
+ */
 export default function Home({ loaderData }: Route.ComponentProps) {
   console.log(loaderData.message);
 

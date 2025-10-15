@@ -1,0 +1,62 @@
+name: Enforce CODEOWNERS Approval
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  enforce-codeowners:
+    runs-on: ubuntu-latest
+    name: Verify CODEOWNERS approvals
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 1: Check which CODEOWNERS are required and if they've approved
+      - name: Check CODEOWNERS approvals
+        id: check
+        uses: mheap/github-action-required-reviewers@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          codeowners: true
+          required_approvals: 1
+
+      # Step 2: If missing approvals, fail + comment tagging the owners
+      - name: Comment and fail if missing approvals
+        if: steps.check.outputs.approved != 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const missing = `${{ steps.check.outputs.missing_reviewers || '' }}`.trim();
+            if (missing) {
+              const commentBody = `
+❌ **CODEOWNERS Approval Required**
+
+Hey ${missing}, please review this PR before it can be merged.
+
+**Why this check failed:**
+- Not all required code owners have approved yet.
+- Please ensure at least one code owner approves.
+
+_This is an automated reminder._
+`;
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: context.issue.number,
+                body: commentBody
+              });
+            } else {
+              const fallback = `
+❌ **CODEOWNERS approval missing**
+
+Please ensure all designated code owners review and approve before merging.
+`;
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: context.issue.number,
+                body: fallback
+              });
+            }
+            core.setFailed("Missing required CODEOWNER approvals.");

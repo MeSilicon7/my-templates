@@ -1,0 +1,23 @@
+name: "💬 Question"
+description: Ask a general question about the project
+title: "[QUESTION] <short description>"
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your question! Please provide as much context as possible.
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+      description: What part of the project are you asking about?
+      placeholder: API, build process, deployment, etc.
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: Your question in detail
+      placeholder: What is the purpose of the `useFetch` hook?
+    validations:
+      required: true

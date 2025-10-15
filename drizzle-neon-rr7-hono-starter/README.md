@@ -10,8 +10,19 @@ A starter project for React Router 7, Hono, and Drizzle ORM with Neon database o
 - **Neon Database**: Serverless Postgres database for modern applications.
 - **Tailwind CSS**: Utility-first CSS framework for styling.
 
-## Directory Structure
 
+
+## Getting Started
+
+**`workers/app.ts`** is the main entry point for both the frontend and backend. Hono handles all incoming requests, serving React Router pages and API routes.
+
+**`workers/`** directory is where you can define your API routes using Hono and interact with the database using Drizzle ORM.
+
+**`app/`** contains the React frontend code, including routes and components. You can create pages here and call your APIs from them.
+
+A simple form submission example is already included. Check **`app/routes/home.tsx`** and **`workers/app.ts`** to see how it works.
+
+## Directory Structure
 
 ```
 .
@@ -29,8 +40,6 @@ A starter project for React Router 7, Hono, and Drizzle ORM with Neon database o
 └── ...                     # Other configuration files
 ```
 
-
-
 ## Tips
 
 If you want to install shadcn/ui, follow the instructions below:
@@ -38,7 +47,6 @@ If you want to install shadcn/ui, follow the instructions below:
 bun shadcn-ui@latest init
 bun shadcn-ui@latest add button
 ```
-
 
 
 ## Acknowledgements

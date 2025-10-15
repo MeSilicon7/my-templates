@@ -2,7 +2,7 @@
   "name": "drizzle-neon-rr7-hono-starter",
   "description": "A starter project for React Router 7, Hono, and Drizzle ORM with Neon database on Cloudflare Workers",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "build": "react-router build",

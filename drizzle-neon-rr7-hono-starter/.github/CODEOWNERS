@@ -1,0 +1,50 @@
+# CODEOWNERS
+# This file defines who owns what in the repository.
+# Each line is a file pattern followed by one or more GitHub usernames or teams.
+# The last matching pattern takes precedence.
+
+# ------------------------------------------------------------------------------
+# Global owners (default reviewers for all files)
+# ------------------------------------------------------------------------------
+*       @your-org/core-team
+
+# ------------------------------------------------------------------------------
+# Documentation
+# ------------------------------------------------------------------------------
+docs/**                 @your-org/docs-team
+README.md               @your-org/docs-team
+
+# ------------------------------------------------------------------------------
+# Frontend (React / UI)
+# ------------------------------------------------------------------------------
+src/components/**       @your-org/frontend-team
+src/pages/**            @your-org/frontend-team
+src/styles/**           @your-org/frontend-team
+
+# ------------------------------------------------------------------------------
+# Backend / API
+# ------------------------------------------------------------------------------
+server/**               @your-org/backend-team
+api/**                  @your-org/backend-team
+functions/**            @your-org/backend-team
+
+# ------------------------------------------------------------------------------
+# Infrastructure / CI
+# ------------------------------------------------------------------------------
+.github/**              @your-org/devops-team
+Dockerfile              @your-org/devops-team
+docker-compose.yml      @your-org/devops-team
+
+# ------------------------------------------------------------------------------
+# Configuration files
+# ------------------------------------------------------------------------------
+*.json                  @your-org/core-team
+*.yml                   @your-org/core-team
+*.yaml                  @your-org/core-team
+*.env*                  @your-org/core-team
+
+# ------------------------------------------------------------------------------
+# Sensitive areas (require review from project lead)
+# ------------------------------------------------------------------------------
+package.json            @your-org/lead-dev
+tsconfig.json           @your-org/lead-dev

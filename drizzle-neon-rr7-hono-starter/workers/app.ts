@@ -9,8 +9,19 @@ const app = new Hono();
 
 // Add more routes here
 
+/**
+ * Create a new user. (You can remove this, its example code)
+ * 
+ * This endpoint validates the request body against the createUserSchema using zValidator,
+ * then inserts the user data into the users table in the database.
+ * 
+ * @route POST /api/user
+ * @param {Object} req.body - The user data to create (validated by createUserSchema)
+ * @returns {Object} 201 - Success response with created user data
+ * @returns {Object} 500 - Error response if user creation fails
+ * @see {@link https://hono.dev/docs/guides/validation} Hono Validation Docs
+ */
 app.post("/api/user", zValidator("json", createUserSchema), async (c) => {
-  // Docs: https://hono.dev/docs/guides/validation
   const data = await c.req.json();
 
   const db = createDBClient(c.env.DATABASE_URL);
@@ -27,6 +38,15 @@ app.post("/api/user", zValidator("json", createUserSchema), async (c) => {
   }
 });
 
+/**
+ * Catch-all route handler for frontend routes.
+ *
+ * This route handles all remaining GET requests by delegating them to the React Router
+ * request handler. It enables server-side rendering (SSR) for the frontend application.
+ *
+ * @route GET *
+ * @returns The rendered React Router response
+ */
 app.get("*", (c) => {
   const requestHandler = createRequestHandler(
     () => import("virtual:react-router/server-build"),
