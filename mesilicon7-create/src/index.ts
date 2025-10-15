@@ -57,7 +57,18 @@ async function main() {
 
   console.log(chalk.green(`✅ Template downloaded into '${projectName}'\n`));
 
-  // Step 4: Install deps (optional)
+  // Step 4: Choose package manager
+  const { packageManager } = await inquirer.prompt([
+    {
+      type: "list",
+      name: "packageManager",
+      message: "Select a package manager:",
+      choices: ["npm", "pnpm", "yarn", "bun"],
+      default: "npm",
+    },
+  ]);
+
+  // Step 5: Install deps (optional)
   const { installDeps } = await inquirer.prompt([
     {
       type: "confirm",
@@ -68,14 +79,35 @@ async function main() {
   ]);
 
   if (installDeps) {
-    console.log(chalk.yellow("📥 Installing dependencies...\n"));
-    execSync("npm install", { cwd: targetDir, stdio: "inherit" });
+    console.log(chalk.yellow(`📥 Installing dependencies with ${packageManager}...\n`));
+    execSync(`${packageManager} install`, { cwd: targetDir, stdio: "inherit" });
+  }
+
+  // Step 6: Git initialization (optional)
+  const { initGit } = await inquirer.prompt([
+    {
+      type: "confirm",
+      name: "initGit",
+      message: "Initialize git repository?",
+      default: true,
+    },
+  ]);
+
+  if (initGit) {
+    console.log(chalk.yellow("\n📚 Initializing git repository...\n"));
+    execSync("git init", { cwd: targetDir, stdio: "inherit" });
+    execSync("git add .", { cwd: targetDir, stdio: "inherit" });
+    execSync('git commit -m "Initial commit"', { cwd: targetDir, stdio: "inherit" });
+    console.log(chalk.green("✅ Git repository initialized\n"));
   }
 
   console.log(chalk.greenBright("\n🎉 All done!"));
   console.log(chalk.cyan(`\nNext steps:`));
   console.log(chalk.white(`  cd ${projectName}`));
-  console.log(chalk.white(`  npm run dev`));
+  if (!installDeps) {
+    console.log(chalk.white(`  ${packageManager} install`));
+  }
+  console.log(chalk.white(`  ${packageManager} run dev`));
 }
 
 main().catch((err) => {
